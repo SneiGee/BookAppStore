@@ -1,0 +1,43 @@
+@model RoleModel
+@{
+    ViewData["Title"] = "Add Role - Administrator";
+}
+
+<div class="container">
+    <hr />
+    <div class="row">
+
+        <div class="col-4 offset-4">
+            <div class="content-section">
+                <legend class="border-bottom mb-4">Add New Role</legend>
+                <br />
+                @if (ViewBag.IsSuccess == true)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Role is updated successfully. <br />
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create Role" class="btn btn-outline-primary" />
+                        <a asp-action="Index" asp-controller="admin" class="btn btn-outline-secondary offset-1">Go back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"></partial>
+}

@@ -1,0 +1,39 @@
+@model RoleModel
+@{
+    ViewData["Title"] = "Manage Role - Administrator";
+}
+
+<div class="container">
+    <div class="row p-o m-o">
+        <div class="col-6">
+            <h2 class="text-secondary">Role List</h2>
+        </div>
+        <div class="col-3 offset-3">
+            <a asp-action="AddRole" asp-controller="Role" class="btn btn-info form-control text-white">
+                Add New Role
+            </a>
+        </div>
+        <div class="col-12 border p-3">
+
+            @if (Model?.IsSuccess == true)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    New role is added successfully. <br />
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+
+            <table id="loadData" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>

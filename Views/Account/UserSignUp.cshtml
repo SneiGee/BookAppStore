@@ -1,0 +1,72 @@
+@model UserSignUpModel
+@{
+    ViewData["Title"] = "Sign Up";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="content-section">
+                <legend class="border-bottom mb-4">Join Us Today</legend>
+                <br />
+                @if (ViewBag.IsSuccess == true)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Your account is create successfully. An activation link is sent to your mail, click to activate your account!! <br />
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+                <form method="post" novalidate>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label"></label>
+                        <input asp-for="FirstName" class="form-control">
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label"></label>
+                        <input asp-for="LastName" class="form-control">
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-6">
+                            <label asp-for="Password" class="control-label"></label>
+                            <input asp-for="Password" class="form-control">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="col-6">
+                            <label asp-for="ConfirmPassword" class="control-label"></label>
+                            <input asp-for="ConfirmPassword" class="form-control">
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-5">
+                        <button type="submit" class="btn btn-outline-primary form-control">
+                            Sign Up
+                        </button>
+                        </div>
+                        <div class="col-7">
+                        <small class="text-muted ml-3">Already Have Account? <a asp-controller="account" asp-action="login" class="ml-2"> Sign In</a></small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-6">
+            <img src="~/images/signup.png" class="img-fluid" />
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"></partial>
+}

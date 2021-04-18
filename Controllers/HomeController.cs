@@ -6,23 +6,34 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BookAppStore.Models;
+using BookAppStore.Repository;
 
 namespace BookAppStore.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly BookRepository _bookRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, BookRepository bookRepository)
         {
             _logger = logger;
+            _bookRepository = bookRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
+        {
+            var data = await _bookRepository.GetAllBookAsync();
+            return View(data);
+        }
+
+        [Route("about-us")]
+        public IActionResult AboutUs()
         {
             return View();
         }
 
+        [Route("privacy")]
         public IActionResult Privacy()
         {
             return View();

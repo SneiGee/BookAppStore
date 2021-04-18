@@ -1,0 +1,80 @@
+@model EditUserModel
+@{
+    ViewData["Title"] = "Update User - Admin";
+}
+
+
+<div class="container">
+
+    <hr />
+    <div class="row">
+
+        <div class="col-6 offset-3">
+            <div class="content-section">
+                <legend class="border-bottom mb-4">Edit User Info</legend>
+                <br />
+                @if (ViewBag.IsSuccess == true)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        User profile has been updated successfully. <br />
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+                
+                <form method="post" novalidate>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Update User" class="btn btn-primary" />
+                        <a asp-action="AllUsersList" asp-controller="Role" class="btn btn-outline-secondary offset-2">
+                            Go back
+                        </a>
+                    </div><br />
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>User Role</h3>
+                        </div>
+                        <div class="card-body">
+                            @if (Model.Roles.Any())
+                            {
+                                @foreach (var role in Model.Roles)
+                                {
+                                    <span>@role</span>
+                                }
+                            }
+                            else
+                            {
+                                <span class="card-title">none at the moment</span>
+                            }
+                        </div>
+                        <div class="card-footer">
+                            <a asp-action="ManageUserRole" asp-controller="Role" asp-route-userId="@Model.Id" class="btn btn-info">Manage Roles</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"></partial>
+}

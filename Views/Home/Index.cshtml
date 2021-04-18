@@ -1,8 +1,40 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<BookModel>
+@{
+    ViewData["Title"] = "Where master minded are born, legends club!";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="jumbotron jumbotron-fluid" style="margin-top: -25px;height: 60%;background: #fff;font-family: sans-serif;">
+    <div class="container">
+        <h1 class="display-5 text-center" style="font-family: Oswald;font-weight: bold">IDEAS BOOKSCLUB</h1>
+        <p class="lead text-center">Welcome to where ideas are born, shared and read.
+            <span class="badge badge-dark">Share Idea's</span>
+        </p>
+    </div>
+</div>
+
+
+<div class="container">
+    <h5 class="display-5">
+        <span class="badge badge-secondary">All Book</span>
+    </h5>
+    <div class="row">
+        @foreach (var book in Model)
+        {
+            <div class="col-4 card-home">
+                <div class="card mb-4 shadow-sm">
+                    <img class="card-home-image" src="@book.CoverImageUrl" class="img-thumbnail">
+                    <div class="card-body card-home-body">
+                        <h5 class="card-title">@book.Title</h5>
+                        <div class="card-text">@book.Description</div>
+                        <div class="d-flex justify-content-between align-items-center card-home-body-group">
+                            <div class="btn-group">
+                                <a asp-action="BookDetail" asp-controller="Book" asp-route-id="@book.Id" class="btn btn-sm btn-outline-secondary">View details</a>
+                            </div>
+                            <small class="text-muted">@book.ApplicationUserId</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
